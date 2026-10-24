@@ -4,7 +4,7 @@ import { Eye, Sparkles } from "lucide-react";
 export function HeroVisual() {
   const reduced = useReducedMotion();
   return (
-    <div className="hero-visual">
+    <div className="hero-visual relative overflow-hidden">
       <div className="visual-label">
         <span className="status-dot" /> YOUR MOMENT OF FOCUS
       </div>

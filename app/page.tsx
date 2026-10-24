@@ -23,6 +23,8 @@ export default function Home() {
     <>
       <Header />
       <main>
+        <div className="hero-background section-surface">
+          <div className="hero-aurora" aria-hidden="true" />
         <section className="hero shell">
           <div className="hero-copy">
             <span className="eyebrow hero-eyebrow">
@@ -68,8 +70,10 @@ export default function Home() {
           </div>
           <HeroVisual />
         </section>
+        </div>
       
-        <section className="section shell" id="exercises">
+        <section className="section section-surface section-ink" id="exercises">
+          <div className="shell">
           <div className="section-heading">
             <div>
               <span className="eyebrow">FIND YOUR FOCUS</span>
@@ -83,10 +87,12 @@ export default function Home() {
             </span>
           </div>
           <ExerciseGrid />
+          </div>
         </section>
         
      
-        <section className="section shell" id="progress">
+        <section className="section section-surface" id="progress">
+          <div className="shell">
           <div className="section-heading">
             <div>
               <span className="eyebrow">SMALL HABITS, VISIBLE PROGRESS</span>
@@ -103,8 +109,10 @@ export default function Home() {
             <span>MONDAY — SUNDAY</span>
           </div>
           <ProgressSummary />
+          </div>
         </section>
-        <section className="closing shell">
+        <section className="closing section-surface">
+          <div className="shell">
           <span className="eyebrow">YOUR NEXT PAUSE IS A GOOD ONE</span>
           <h2>
             A little focus.<span> A little calm.</span>
@@ -114,6 +122,7 @@ export default function Home() {
             Find Your Exercise
             <ArrowUpRight size={17} />
           </Link>
+          </div>
         </section>
       </main>
       <Footer />

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BackToTop } from "@/components/layout/BackToTop";
 import "./globals.css";
 export const metadata: Metadata = {
   title: {
@@ -16,10 +17,8 @@ export default function RootLayout({
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <body>
-        <a href="#main-content" className="skip-link">
-          Skip to content
-        </a>
-        <div id="main-content">{children}</div>
+        {children}
+        <BackToTop />
       </body>
     </html>
   );
