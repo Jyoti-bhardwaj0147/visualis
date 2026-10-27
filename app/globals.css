@@ -3,6 +3,7 @@
   --color-primary: #4177ff;
   --color-ink: #14213d;
   --font-sans: Arial, Helvetica, sans-serif;
+  
 }
 :root {
   --bg: #f7fafc;
@@ -16,14 +17,13 @@
   box-sizing: border-box;
 }
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: 100px;
 }
 body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-dm-sans), Arial, sans-serif;  
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -56,6 +56,7 @@ h2,
 h3 {
   line-height: 1.15;
   letter-spacing: -0.045em;
+  font-family: var(--font-fraunces), Georgia, serif;
 }
 h1 {
   font-size: clamp(36px, 5vw, 62px);
@@ -64,6 +65,7 @@ h1 {
 h2 {
   font-size: clamp(28px, 3vw, 37px);
   font-weight: 600;
+  
 }
 h3 {
   font-weight: 600;
@@ -287,7 +289,7 @@ p {
   letter-spacing: 1.7px;
   font-weight: 700;
   color: #58769b;
-  display: flex;
+  display: display;
   align-items: center;
   gap: 9px;
   margin-bottom: 19px;
@@ -376,7 +378,7 @@ p {
 }
 .orbit-ring.outer {
   width: 83%;
-  border-color: #e4edf7;
+  border-color: #98c5f7;
 }
 .orbit-ring.middle {
   width: 66%;
@@ -385,7 +387,7 @@ p {
 }
 .orbit-ring.inner {
   width: 48%;
-  border-color: #dce9f7;
+  border-color: #c2daf5;
 }
 .eye-core {
   width: 32%;
@@ -407,6 +409,12 @@ p {
   width: 66%;
   aspect-ratio: 1;
   border-radius: 50%;
+  animation: orbit-spin 16s linear infinite;
+}
+@keyframes orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 .orbit-dot {
   position: absolute;
@@ -525,10 +533,12 @@ p {
   padding-block: 80px;
 }
 .section-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 18px;
   margin-bottom: 33px;
+  transition: margin-bottom 0.25s ease, gap 0.25s ease;
 }
 .section-heading .eyebrow {
   margin-bottom: 12px;
@@ -549,6 +559,7 @@ p {
   gap: 22px;
 }
 .exercise-card {
+  --exercise-tone: #5b89e4;
   border: 1px solid #e3ebf4;
   border-radius: 15px;
   overflow: hidden;
@@ -560,8 +571,10 @@ p {
 }
 .exercise-card:hover {
   transform: translateY(-4px);
-  border-color: #bfd3f7;
-  box-shadow: 0 14px 30px #2849650a;
+  border: 1px solid var(--exercise-tone);
+  box-shadow:
+    color-mix(in srgb, var(--exercise-tone) 25%, transparent) 0 13px 27px -5px,
+    color-mix(in srgb, var(--exercise-tone) 30%, transparent) 0 8px 16px -8px;
 }
 .preview-box {
   height: 182px;
@@ -570,7 +583,7 @@ p {
   align-items: center;
   justify-content: center;
   background: #eff5ff;
-  color: #5b89e4;
+  color: var(--exercise-tone);
 }
 .exercise-number {
   position: absolute;
@@ -584,6 +597,64 @@ p {
   height: 140px;
   max-width: 300px;
 }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .exercise-card .exercise-preview-target {
+    transition: transform 0.3s ease;
+  }
+  .exercise-card.tone-0 .exercise-preview-target {
+    transform-box: view-box;
+    transform-origin: 140px 65px;
+  }
+  .exercise-card.tone-4 .exercise-preview-target {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .exercise-card.tone-0:hover .exercise-preview-target { animation: preview-circle 4s linear infinite; }
+  .exercise-card.tone-1:hover .exercise-preview-target { animation: preview-horizontal 3s ease-in-out infinite; }
+  .exercise-card.tone-2:hover .exercise-preview-target { animation: preview-vertical 3s ease-in-out infinite; }
+  .exercise-card.tone-3:hover .exercise-preview-target { animation: preview-eight 5s linear infinite; }
+  .exercise-card.tone-4:hover .exercise-preview-target { animation: preview-focus 3s ease-in-out infinite; }
+  .exercise-card.tone-5:hover .exercise-preview-target { animation: preview-random 6s ease-in-out infinite; }
+}
+@keyframes preview-circle {
+  to { transform: rotate(360deg); }
+}
+@keyframes preview-horizontal {
+  0%, 100% { transform: translateX(0); }
+  40% { transform: translateX(-144px); }
+  80% { transform: translateX(40px); }
+}
+@keyframes preview-vertical {
+  0%, 100% { transform: translateY(0); }
+  15% { transform: translateY(-19px); }
+  65% { transform: translateY(79px); }
+}
+@keyframes preview-eight {
+  0%, 100% { transform: translate(0, 0); }
+  8.33% { transform: translate(41.1px, -37.8px); }
+  16.67% { transform: translate(70.9px, -40.2px); }
+  25% { transform: translate(84px, -20.5px); }
+  33.33% { transform: translate(75px, 8px); }
+  41.67% { transform: translate(40.1px, 21.2px); }
+  50% { transform: translate(1px, 0.8px); }
+  58.33% { transform: translate(-38.1px, -22.4px); }
+  66.67% { transform: translate(-73px, -17px); }
+  75% { transform: translate(-87.8px, 14.9px); }
+  83.33% { transform: translate(-74.8px, 36.5px); }
+  91.67% { transform: translate(-42.6px, 35.6px); }
+}
+@keyframes preview-focus {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(0.6); }
+}
+@keyframes preview-random {
+  0%, 100% { transform: translate(0, 0); }
+  12.5%, 62.5% { transform: translate(-34px, 58px); }
+  25%, 50% { transform: translate(-114px, -6px); }
+  37.5% { transform: translate(-152px, 52px); }
+  75% { transform: translate(0, 0); }
+  87.5% { transform: translate(-77px, 27px); }
+}
 .preview-tag {
   position: absolute;
   bottom: 13px;
@@ -591,25 +662,25 @@ p {
   letter-spacing: 0.25px;
   color: #586e8b;
 }
+.tone-1 { --exercise-tone: #68aaa6; }
+.tone-2 { --exercise-tone: #9690cd; }
+.tone-3 { --exercise-tone: #79a2c3; }
+.tone-4 { --exercise-tone: #9aac82; }
+.tone-5 { --exercise-tone: #c6a276; }
 .tone-1 .preview-box {
   background: #eef7f6;
-  color: #68aaa6;
 }
 .tone-2 .preview-box {
   background: #f3f2fb;
-  color: #9690cd;
 }
 .tone-3 .preview-box {
   background: #edf5fb;
-  color: #79a2c3;
 }
 .tone-4 .preview-box {
   background: #f2f7f0;
-  color: #9aac82;
 }
 .tone-5 .preview-box {
   background: #faf4ed;
-  color: #c6a276;
 }
 .exercise-card-body {
   padding: 23px 24px 18px;
@@ -620,7 +691,7 @@ p {
 }
 .exercise-card p {
   font-size: 11px;
-  line-height: 1.8;
+  line-height: 1.5;
   min-height: 40px;
   margin-top: 10px;
   max-width: 245px;
@@ -645,6 +716,16 @@ p {
   color: var(--blue);
   font-weight: 600;
   gap: 12px;
+}
+.exercise-card .start-link svg {
+  transition: transform 0.2s ease;
+}
+.exercise-card:hover .start-link svg {
+  transform: rotate(45deg);
+  color: var(--exercise-tone)
+}
+.exercise-card:hover .start-link {
+  color: var(--exercise-tone)
 }
 .how-section {
   border-block: 1px solid #e9eff4;
@@ -1087,6 +1168,7 @@ p {
   padding: 0;
   max-height: 420px;
   overflow: auto;
+  overscroll-behavior: contain;
 }
 .history li {
   display: flex;
@@ -1119,9 +1201,16 @@ p {
   background: #a8313f;
   color: white;
 }
+.setup-surface {
+  min-height: 100dvh;
+}
 .setup-page {
   padding-top: 45px;
   padding-bottom: 65px;
+}
+.setup-surface .back-link,
+.setup-surface .setup-intro > p {
+  color: #c6d4e7;
 }
 .back-link {
   display: flex;
@@ -1170,6 +1259,7 @@ p {
 }
 .setup-card {
   background: white;
+  color: var(--ink);
   border: 1px solid var(--line);
   border-radius: 20px;
   padding: 32px;
@@ -1352,6 +1442,9 @@ p {
 }
 .completion-detail span {
   font-size: 12px;
+  color: var(--muted);
+}
+.completion-detail strong {
   color: var(--muted);
 }
 .save-status {
@@ -1780,7 +1873,6 @@ p {
   }
   .section-heading {
     margin-bottom: 25px;
-    align-items: flex-start;
     gap: 14px;
   }
   .section-heading h2 {
@@ -1929,7 +2021,6 @@ p {
     font-size: 10px;
   }
   .section-heading:has(.text-link) {
-    flex-direction: column;
     gap: 18px;
   }
   .closing {
@@ -2181,7 +2272,24 @@ p {
 .section-ink .progress-panel {
   color: var(--ink);
 }
+.focus-screen.section-ink .focus-top .brand,
+.focus-screen.section-ink .focus-mode-label,
+.focus-screen.section-ink .session-timer,
+.focus-screen.section-ink .focus-instruction,
+.focus-screen.section-ink .focus-footnote,
+.focus-screen.section-ink .completion > p {
+  color: #c6d4e7;
+}
+.focus-screen.section-ink .exercise-canvas {
+  background: #edf4ff;
+  border-color: #a9c8ff;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+.focus-screen.section-ink .canvas-axis {
+  background: #b7c9e0;
+}
 @media (prefers-reduced-motion: reduce) {
+  .orbit-spinner,
   .hero-aurora::before,
   .hero-background::before,
   .hero-background::after {
@@ -2196,7 +2304,8 @@ p {
     transition: none !important;
   }
   .button:hover,
-  .exercise-card:hover {
+  .exercise-card:hover,
+  .exercise-card:hover .start-link svg {
     transform: none;
   }
 }

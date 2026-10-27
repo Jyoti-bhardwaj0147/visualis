@@ -1,9 +1,11 @@
 "use client";
 
 import { ArrowUp } from "lucide-react";
+import { useLenis } from "lenis/react";
 import { useEffect, useState } from "react";
 
 export function BackToTop() {
+  const lenis = useLenis();
   const [progress, setProgress] = useState(0);
   const [visible, setVisible] = useState(false);
 
@@ -39,7 +41,11 @@ export function BackToTop() {
 
   const scrollToTop = () => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+    if (lenis && !reduceMotion) {
+      lenis.scrollTo(0);
+    } else {
+      window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+    }
   };
 
   return (

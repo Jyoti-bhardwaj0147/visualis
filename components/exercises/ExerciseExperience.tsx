@@ -76,7 +76,7 @@ export function ExerciseExperience({ exercise }: { exercise: Exercise }) {
   }, [session.status]);
   if (session.status === "complete")
     return (
-      <main className="focus-screen">
+      <main className="focus-screen section-ink section-surface">
         <h2 ref={focusHeading} tabIndex={-1} className="sr-only">
           Session complete
         </h2>
@@ -90,7 +90,7 @@ export function ExerciseExperience({ exercise }: { exercise: Exercise }) {
     );
   if (session.status !== "setup")
     return (
-      <main className="focus-screen">
+      <main className="focus-screen section-ink section-surface">
         <div className="focus-top">
           <span className="brand">
             <Eye size={23} />
@@ -127,78 +127,80 @@ export function ExerciseExperience({ exercise }: { exercise: Exercise }) {
       </main>
     );
   return (
-    <main className="shell setup-page">
-      <Link href="/exercises" className="back-link">
-        <ArrowLeft size={16} />
-        All exercises
-      </Link>
-      <div className="setup-grid">
-        <div className="setup-intro">
-          <span className="eyebrow">MAKE A MOMENT FOR YOURSELF</span>
-          <h1>{exercise.name}</h1>
-          <p>{exercise.description}</p>
-          <div className="setup-preview">
-            <ExercisePreview path={exercise.path} />
+    <main className="section-ink section-surface setup-surface">
+      <div className="shell setup-page">
+        <Link href="/exercises" className="back-link">
+          <ArrowLeft size={16} />
+          All exercises
+        </Link>
+        <div className="setup-grid">
+          <div className="setup-intro">
+            <span className="eyebrow">MAKE A MOMENT FOR YOURSELF</span>
+            <h1>{exercise.name}</h1>
+            <p>{exercise.description}</p>
+            <div className="setup-preview">
+              <ExercisePreview path={exercise.path} />
+            </div>
+            <p className="comfort-note">
+              <Info size={18} />
+              Sit comfortably, keep your head relaxed, and follow with your eyes.
+              Choose a pace that feels easy.
+            </p>
           </div>
-          <p className="comfort-note">
-            <Info size={18} />
-            Sit comfortably, keep your head relaxed, and follow with your eyes.
-            Choose a pace that feels easy.
-          </p>
-        </div>
-        <div className="setup-card">
-          <h2>
-            <SlidersHorizontal size={20} />
-            Your session, your pace.
-          </h2>
-          <p>A few small adjustments, then a little focus.</p>
-          <Options
-            label="Duration"
-            value={duration}
-            onChange={setDuration}
-            values={[
-              { value: 30, label: "30 sec" },
-              { value: 60, label: "60 sec" },
-              { value: 90, label: "90 sec" },
-              { value: 120, label: "2 min" },
-            ]}
-          />
-          <Options
-            label="Speed"
-            value={speed}
-            onChange={setSpeed}
-            values={[
-              { value: "calm", label: "Calm" },
-              { value: "standard", label: "Standard" },
-              { value: "dynamic", label: "Dynamic" },
-            ]}
-          />
-          <Options
-            label="Target size"
-            value={size}
-            onChange={setSize}
-            values={[
-              { value: "small", label: "Small" },
-              { value: "medium", label: "Medium" },
-              { value: "large", label: "Large" },
-            ]}
-          />
-          {exercise.path === "circular" && (
+          <div className="setup-card">
+            <h2>
+              <SlidersHorizontal size={20} />
+              Your session, your pace.
+            </h2>
+            <p>A few small adjustments, then a little focus.</p>
             <Options
-              label="Direction"
-              value={direction}
-              onChange={setDirection}
+              label="Duration"
+              value={duration}
+              onChange={setDuration}
               values={[
-                { value: 1, label: "Clockwise" },
-                { value: -1, label: "Counterclockwise" },
+                { value: 30, label: "30 sec" },
+                { value: 60, label: "60 sec" },
+                { value: 90, label: "90 sec" },
+                { value: 120, label: "2 min" },
               ]}
             />
-          )}
-          <button className="button primary start-session" onClick={start}>
-            <Play size={17} />
-            Start Exercise
-          </button>
-          <small>Motion begins only when you are ready.</small>
+            <Options
+              label="Speed"
+              value={speed}
+              onChange={setSpeed}
+              values={[
+                { value: "calm", label: "Calm" },
+                { value: "standard", label: "Standard" },
+                { value: "dynamic", label: "Dynamic" },
+              ]}
+            />
+            <Options
+              label="Target size"
+              value={size}
+              onChange={setSize}
+              values={[
+                { value: "small", label: "Small" },
+                { value: "medium", label: "Medium" },
+                { value: "large", label: "Large" },
+              ]}
+            />
+            {exercise.path === "circular" && (
+              <Options
+                label="Direction"
+                value={direction}
+                onChange={setDirection}
+                values={[
+                  { value: 1, label: "Clockwise" },
+                  { value: -1, label: "Counterclockwise" },
+                ]}
+              />
+            )}
+            <button className="button primary start-session" onClick={start}>
+              <Play size={17} />
+              Start Exercise
+            </button>
+            <small>Motion begins only when you are ready.</small>
+          </div>
         </div>
       </div>
     </main>

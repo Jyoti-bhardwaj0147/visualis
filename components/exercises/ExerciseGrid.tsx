@@ -12,17 +12,13 @@ export function ExerciseGrid() {
           key={exercise.id}
         >
           <div className="preview-box">
-            <span className="exercise-number">0{i + 1}</span>
             <ExercisePreview path={exercise.path} />
             <span className="preview-tag">{exercise.tag}</span>
           </div>
           <div className="exercise-card-body">
             <h3>{exercise.name}</h3>
             <p>{exercise.description}</p>
-            <div className="card-bottom">
-              <span>
-                <Clock3 size={13} /> 30 sec – 2 min
-              </span>
+            <div className="card-bottom">             
               <span className="start-link">
                 Start <ArrowUpRight size={16} />
               </span>

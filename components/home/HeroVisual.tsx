@@ -1,8 +1,5 @@
-"use client";
-import { motion, useReducedMotion } from "motion/react";
-import { Eye, Sparkles } from "lucide-react";
+import { Eye } from "lucide-react";
 export function HeroVisual() {
-  const reduced = useReducedMotion();
   return (
     <div className="hero-visual relative overflow-hidden">
       <div className="visual-label">
@@ -15,13 +12,9 @@ export function HeroVisual() {
         <div className="eye-core">
           <Eye strokeWidth={1.1} />
         </div>
-        <motion.div
-          className="orbit-spinner"
-          animate={reduced !== false ? { rotate: 0 } : { rotate: 360 }}
-          transition={{ duration: 16, ease: "linear", repeat: Infinity }}
-        >
+        <div className="orbit-spinner">
           <span className="orbit-dot" />
-        </motion.div>
+        </div>
         <span className="orbit-cross cross-one">+</span>
         <span className="orbit-cross cross-two">+</span>
       </div>

@@ -22,51 +22,53 @@ export function ExercisePreview({ path }: { path: ExercisePath }) {
         )}
         {path === "random" && <path d="M65 90L103 32L183 96L217 38L140 65" />}
       </g>
-      <circle
-        cx={
-          path === "horizontal"
-            ? 192
-            : path === "circular"
-              ? 180
-              : path === "random"
-                ? 217
-                : 140
-        }
-        cy={
-          path === "vertical"
-            ? 35
-            : path === "circular"
-              ? 38
-              : path === "random"
+      <g className="exercise-preview-target">
+        <circle
+          cx={
+            path === "horizontal"
+              ? 192
+              : path === "circular"
+                ? 180
+                : path === "random"
+                  ? 217
+                  : 140
+          }
+          cy={
+            path === "vertical"
+              ? 35
+              : path === "circular"
                 ? 38
-                : 65
-        }
-        r="15"
-        fill="currentColor"
-        opacity=".10"
-      />
-      <circle
-        cx={
-          path === "horizontal"
-            ? 192
-            : path === "circular"
-              ? 180
-              : path === "random"
-                ? 217
-                : 140
-        }
-        cy={
-          path === "vertical"
-            ? 35
-            : path === "circular"
-              ? 38
-              : path === "random"
+                : path === "random"
+                  ? 38
+                  : 65
+          }
+          r="15"
+          fill="currentColor"
+          opacity=".10"
+        />
+        <circle
+          cx={
+            path === "horizontal"
+              ? 192
+              : path === "circular"
+                ? 180
+                : path === "random"
+                  ? 217
+                  : 140
+          }
+          cy={
+            path === "vertical"
+              ? 35
+              : path === "circular"
                 ? 38
-                : 65
-        }
-        r={path === "focus-shift" ? 12 : 7}
-        fill="currentColor"
-      />
+                : path === "random"
+                  ? 38
+                  : 65
+          }
+          r={path === "focus-shift" ? 12 : 7}
+          fill="currentColor"
+        />
+      </g>
       {path === "horizontal" && (
         <>
           <circle cx="48" cy="65" r="3" fill="currentColor" opacity=".4" />

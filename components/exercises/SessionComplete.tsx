@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Check, RotateCcw, ArrowRight } from "lucide-react";
+import { Check, RotateCcw, ArrowRight, ArrowLeft } from "lucide-react";
 export function SessionComplete({
   name,
   duration,
@@ -31,10 +31,10 @@ export function SessionComplete({
             : "Session complete, but your browser could not save it. Check your storage settings."}
       </p>
       <div className="completion-actions">
-        <button className="button primary" onClick={onRepeat}>
-          <RotateCcw size={16} />
-          Repeat Exercise
-        </button>
+        <Link href="/progress" className="button primary" >
+        <ArrowLeft size={16} />
+          See Progress
+        </Link>
         <Link href="/exercises" className="button secondary">
           Back to Exercises
           <ArrowRight size={16} />

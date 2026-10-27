@@ -8,7 +8,7 @@ import {
   ArrowUpRight,
   Trash2,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useExerciseProgress } from "@/hooks/useExerciseProgress";
 import {
   clearProgress,
@@ -18,8 +18,36 @@ import {
 } from "@/lib/progress-storage";
 export function ProgressSummary({ full = false }: { full?: boolean }) {
   const { sessions, loaded } = useExerciseProgress();
+  const historyRef = useRef<HTMLDivElement>(null);
+  const historyListRef = useRef<HTMLUListElement>(null);
   const [confirm, setConfirm] = useState(false);
   const [error, setError] = useState("");
+  useEffect(() => {
+    const history = historyRef.current;
+    if (!history) return;
+
+    const scrollHistory = (event: WheelEvent) => {
+      const list = historyListRef.current;
+      if (
+        !list ||
+        list.scrollHeight <= list.clientHeight ||
+        !event.deltaY ||
+        event.ctrlKey ||
+        (event.target instanceof Node && list.contains(event.target))
+      ) return;
+
+      const unit = event.deltaMode === WheelEvent.DOM_DELTA_LINE
+        ? 16
+        : event.deltaMode === WheelEvent.DOM_DELTA_PAGE
+          ? list.clientHeight
+          : 1;
+      event.preventDefault();
+      list.scrollTop += event.deltaY * unit;
+    };
+
+    history.addEventListener("wheel", scrollHistory, { passive: false });
+    return () => history.removeEventListener("wheel", scrollHistory);
+  }, [full]);
   const weekly = getWeeklySessions(sessions);
   const exercises = weekly.filter((s) => s.exerciseType !== "eye-break");
   const seconds = getWeeklyExerciseTime(sessions);
@@ -117,12 +145,12 @@ export function ProgressSummary({ full = false }: { full?: boolean }) {
         </Link>
       </div>
       {full && (
-        <div className="history">
+        <div className="history" ref={historyRef} data-lenis-prevent>
           <h3>Session history</h3>
           {sessions.length === 0 ? (
             <p>No completed sessions yet.</p>
           ) : (
-            <ul>
+            <ul ref={historyListRef}>
               {[...sessions].reverse().map((s) => (
                 <li key={s.id}>
                   <span>{s.exerciseType.replaceAll("-", " ")}</span>
