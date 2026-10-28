@@ -12,16 +12,16 @@ import {
   Leaf,
   Check,
 } from "lucide-react";
-import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { HeroVisual } from "@/components/home/HeroVisual";
 import { ExerciseGrid } from "@/components/exercises/ExerciseGrid";
 import { EyeBreak } from "@/components/home/EyeBreak";
 import { ProgressSummary } from "@/components/progress/ProgressSummary";
+import { FocusOrbitLoader } from "@/components/home/FocusOrbitLoader";
 export default function Home() {
   return (
     <>
-      <Header />
+      <FocusOrbitLoader />
       <main>
         <div className="hero-background section-surface">
           <div className="hero-aurora" aria-hidden="true" />
@@ -114,10 +114,7 @@ export default function Home() {
               A little focus.<span> A little calm.</span>
             </h2>
             <p>Build a screen routine that makes room for you.</p>
-            <Link href="/exercises" className="button primary">
-              Find Your Exercise
-              <ArrowUpRight size={17} />
-            </Link>
+            
           </div>
         </section>
       </main>

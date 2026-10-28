@@ -1,10 +1,8 @@
-import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 export const metadata = { title: "Privacy" };
 export default function Privacy() {
   return (
     <>
-      <Header />
       <main className="shell prose-page">
         <span className="eyebrow">YOUR ROUTINE IS YOURS</span>
         <h1>

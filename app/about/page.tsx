@@ -1,11 +1,9 @@
 import Link from "next/link";
-import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 export const metadata = { title: "About" };
 export default function About() {
   return (
     <>
-      <Header />
       <main className="shell prose-page">
         <span className="eyebrow">A LITTLE SPACE FOR YOU</span>
         <h1>
