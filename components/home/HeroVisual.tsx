@@ -2,9 +2,9 @@ import { Eye } from "lucide-react";
 export function HeroVisual() {
   return (
     <div className="hero-visual relative overflow-hidden">
-      <div className="visual-label">
+      {/* <div className="visual-label">
         <span className="status-dot" /> YOUR MOMENT OF FOCUS
-      </div>
+      </div> */}
       <div className="orbital">
         <div className="orbit-ring outer" />
         <div className="orbit-ring middle" />

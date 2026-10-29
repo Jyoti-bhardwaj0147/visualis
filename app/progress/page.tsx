@@ -6,7 +6,7 @@ export default function Progress() {
     <>
       <main className="section shell route-page">
         <span className="eyebrow">SMALL HABITS, VISIBLE PROGRESS</span>
-        <h1>Your week in focus</h1>
+        <h1>Your week in <span>focus</span></h1>
         <p className="page-description">
           Real moments, at your own pace. Your activity is stored only on this
           browser.

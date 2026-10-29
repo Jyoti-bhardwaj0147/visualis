@@ -6,7 +6,7 @@ export default function Exercises() {
     <>
       <main className="shell section route-page">
         <span className="eyebrow">FIND YOUR FOCUS</span>
-        <h1>Choose Your Exercise</h1>
+        <h1>Choose Your <span>Exercise</span></h1>
         <p className="page-description">
           Simple visual tracking exercises for focused screen breaks.
           <br />

@@ -18,6 +18,7 @@ import { ExerciseGrid } from "@/components/exercises/ExerciseGrid";
 import { EyeBreak } from "@/components/home/EyeBreak";
 import { ProgressSummary } from "@/components/progress/ProgressSummary";
 import { FocusOrbitLoader } from "@/components/home/FocusOrbitLoader";
+import { CtaSection } from "@/components/home/CtaSection";
 export default function Home() {
   return (
     <>
@@ -27,10 +28,6 @@ export default function Home() {
           <div className="hero-aurora" aria-hidden="true" />
           <section className="hero shell">
             <div className="hero-copy">
-              <span className="eyebrow hero-eyebrow">
-                <span className="status-dot" />A HEALTHIER SCREEN ROUTINE, ONE
-                GAZE AT A TIME
-              </span>
               <h1>
                 Train Your
                 <br />
@@ -78,7 +75,7 @@ export default function Home() {
             <div className="section-heading">
               <div>
                 <span className="eyebrow">FIND YOUR FOCUS</span>
-                <h2>Choose Your Exercise</h2>
+                <h2>Choose Your <span>Exercise</span></h2>
                 <p>Simple visual tracking exercises for focused screen breaks.
                   Choose a pattern, find your pace, and make a moment for yourself.</p>
               </div>
@@ -93,7 +90,7 @@ export default function Home() {
             <div className="section-heading">
               <div>
                 <span className="eyebrow">SMALL HABITS, VISIBLE PROGRESS</span>
-                <h2>Your week in focus</h2>
+                <h2>Your week in <span>focus</span></h2>
                 <p>Real moments, at your own pace. Your activity is stored only on this browser. </p>
               </div>
 
@@ -106,17 +103,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="closing section-surface section-ink">
-          <div className="shell">
-            <span className="eyebrow">YOUR NEXT PAUSE IS A GOOD ONE</span>
-            <h2>
-              A little focus.<span> A little calm.</span>
-            </h2>
-            <p>Build a screen routine that makes room for you.</p>
-            
-          </div>
-        </section>
+        <CtaSection />
       </main>
       <Footer />
     </>

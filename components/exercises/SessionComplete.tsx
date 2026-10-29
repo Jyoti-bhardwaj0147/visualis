@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Check, RotateCcw, ArrowRight, ArrowLeft } from "lucide-react";
+import { Check, RotateCcw, ArrowRight } from "lucide-react";
 export function SessionComplete({
   name,
   duration,
@@ -32,7 +32,10 @@ export function SessionComplete({
       </p>
       <div className="completion-actions">
         <Link href="/progress" className="button primary" >
-        <ArrowLeft size={16} />
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" strokeDasharray="4 4" />
+          <path d="m9 12 2 2 4-4" />
+        </svg>
           See Progress
         </Link>
         <Link href="/exercises" className="button secondary">

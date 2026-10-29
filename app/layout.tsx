@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { Header } from "@/components/layout/Header";
+import { BackToTop } from "@/components/layout/BackToTop";
 import "lenis/dist/lenis.css";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -47,6 +48,7 @@ export default function RootLayout({
         <SmoothScroll />
         <Header />
         {children}
+        <BackToTop />
       </body>
     </html>
   );

@@ -7,9 +7,8 @@ export default function About() {
       <main className="shell prose-page">
         <span className="eyebrow">A LITTLE SPACE FOR YOU</span>
         <h1>
-          Better screen habits.
-          <br />
-          One small pause at a time.
+          Small pauses. <span>
+          More mindful moments.</span>
         </h1>
         <p className="lead">
           Visualis makes it simple to step out of autopilot and bring a little
