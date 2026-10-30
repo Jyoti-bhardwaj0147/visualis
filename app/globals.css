@@ -110,6 +110,18 @@
 html {
   scroll-padding-top: 100px;
 }
+/* Optional: Ensure Lenis transitions properly across frames */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis-smooth [data-lenis-prevent] {
+  scroll-behavior: inherit;
+}
 body {
   margin: 0;
   background: var(--bg);
@@ -263,22 +275,93 @@ body:has(.focus-screen) > .header {
 .button:hover {
   transform: translateY(-2px);
 }
+
+
 .primary {
-  background: #3467e7;
-  color: #fff;
-  box-shadow: 0 5px 13px #4177ff15;
+  color: #ffffff;
+  font-size: 11px;
+  font-family: sans-serif;
+  font-weight: bold;
+  padding: 11px 17px;
+  min-height: 40px;
+  border-radius: 6px; /* Smooth, slightly rounded corners */
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.1s ease;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.4); /* Slight inner text depth */
+
+  /* 1. The Smooth 3D Face (Light gradient from top to bottom) */
+  background: linear-gradient(to bottom, #5d8cf7 0%, #3467e7 100%);
+  
+  /* 2. Top Highlight, Solid 3D Base, and Soft Drop Shadow combined */
+  box-shadow: 
+    inset 0 1px 0px rgba(255, 255, 255, 0.4), /* Smooth top inner highlight */
+    0 4px 0px #1e42a0,                        /* Solid, darker 3D bottom edge */
+    0 6px 10px rgba(0, 0, 0, 0.3);            /* Soft ambient blur shadow underneath */
+  
+  /* Removes default browser borders */
+  border: 1px solid #2352cb; 
+  border-bottom: none;
 }
+
+/* Hover State (Slightly brighter surface) */
 .primary:hover {
-  background: #2b62ed;
-  box-shadow: 0 5px 18px #4177ff25;
+  background: linear-gradient(to bottom, #729dfa 0%, #4073f3 100%);
 }
+
+/* Click/Pressed State (Pushes down mechanically) */
+.primary:active {
+  transform: translateY(3px); /* Sinks down near the base */
+  box-shadow: 
+    inset 0 1px 0px rgba(255, 255, 255, 0.2),
+    0 1px 0px #1e42a0,                        /* Shrinks the 3D thickness */
+    0 2px 4px rgba(0, 0, 0, 0.2);             /* Compresses the drop shadow */
+}
+
+
 .secondary {
-  background: #fff;
-  border-color: var(--line);
   color: var(--ink);
+  font-size: 11px;
+  font-family: sans-serif;
+  font-weight: bold;
+  padding: 11px 17px;
+  min-height: 40px;
+  border-radius: 6px; /* Matches the primary shape */
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.1s ease;
+  text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.8); /* Crisp text depth for light backgrounds */
+
+  /* 1. The Smooth 3D Face (Clean white-to-light-gray gradient) */
+  background: linear-gradient(to bottom, #ffffff 0%, #f4f7fa 100%);
+  
+  /* 2. Top Edge Highlight, 3D Depth Block, and Ambient Drop Shadow */
+  box-shadow: 
+    inset 0 1px 0px #ffffff,                  /* Clean inner top reflection */
+    0 4px 0px var(--line),                     /* Solid 3D bottom thickness using your line color */
+    0 6px 10px rgba(20, 33, 61, 0.1);         /* Soft drop shadow using an alpha version of your ink color */
+  
+  /* Outer side borders matching your system */
+  border: 1px solid var(--line);
+  border-bottom: none;
 }
+
+/* Hover State (Shifts slightly towards your theme's light blue accent) */
 .secondary:hover {
-  background: #edf4ff;
+  background: linear-gradient(to bottom, #ffffff 0%, #edf4ff 100%);
+}
+
+/* Click/Pressed State (Pushes down mechanically matching the primary button) */
+.secondary:active {
+  transform: translateY(3px); /* Sinks down near the base */
+  box-shadow: 
+    inset 0 1px 0px #ffffff,
+    0 1px 0px var(--line),                     /* Shrinks the 3D thickness */
+    0 2px 4px rgba(20, 33, 61, 0.08);         /* Compresses the drop shadow */
 }
 .dark {
   background: #183e43;
@@ -1162,7 +1245,7 @@ body:has(.focus-screen) > .header {
   min-height: 3px;
   width: 100%;
   border-radius: 5px 5px 2px 2px;
-  background: linear-gradient(#75a0ff, #c3d7ff);
+  background: linear-gradient(#2563eb, #d2e1ff);
 }
 .day {
   font-size: 10px;
