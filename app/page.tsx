@@ -19,6 +19,7 @@ import { EyeBreak } from "@/components/home/EyeBreak";
 import { ProgressSummary } from "@/components/progress/ProgressSummary";
 import { FocusOrbitLoader } from "@/components/home/FocusOrbitLoader";
 import { CtaSection } from "@/components/home/CtaSection";
+import { HomeReveal } from "@/components/home/HomeAnimations";
 export default function Home() {
   return (
     <>
@@ -27,7 +28,7 @@ export default function Home() {
         <div className="hero-background section-surface">
           <div className="hero-aurora" aria-hidden="true" />
           <section className="hero shell">
-            <div className="hero-copy">
+            <HomeReveal className="hero-copy" afterLoader>
               <h1>
                 Train Your
                 <br />
@@ -64,7 +65,7 @@ export default function Home() {
                   Track Your Progress
                 </span>
               </div>
-            </div>
+            </HomeReveal>
             <HeroVisual />
           </section>
         </div>
@@ -72,40 +73,40 @@ export default function Home() {
         {/* Choose Your Exercise Section */}
         <section className="section section-surface section-ink" id="exercises">
           <div className="shell">
-            <div className="section-heading">
+            <HomeReveal className="section-heading">
               <div>
                 <span className="eyebrow">FIND YOUR FOCUS</span>
                 <h2>Choose Your <span>Exercise</span></h2>
                 <p>Simple visual tracking exercises for focused screen breaks.
                   Choose a pattern, find your pace, and make a moment for yourself.</p>
               </div>
-            </div>
-            <ExerciseGrid />
+            </HomeReveal>
+            <ExerciseGrid animated />
           </div>
         </section>
 
 
         <section className="section section-surface" id="progress">
           <div className="shell">
-            <div className="section-heading">
+            <HomeReveal className="section-heading">
               <div>
                 <span className="eyebrow">SMALL HABITS, VISIBLE PROGRESS</span>
                 <h2>Your week in <span>focus</span></h2>
                 <p>Real moments, at your own pace. Your activity is stored only on this browser. </p>
               </div>
 
-            </div>
-            <div className="week-label">
+            </HomeReveal>
+            <HomeReveal className="week-label">
               <span>This Week</span>
               <span>MONDAY — SUNDAY</span>
-            </div>
-            <ProgressSummary />
+            </HomeReveal>
+            <HomeReveal><ProgressSummary /></HomeReveal>
           </div>
         </section>
 
         <CtaSection />
       </main>
-      <Footer />
+      <HomeReveal><Footer /></HomeReveal>
     </>
   );
 }
