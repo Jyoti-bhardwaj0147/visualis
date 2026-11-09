@@ -847,6 +847,11 @@ body:has(.focus-screen) > .header {
     transform-box: fill-box;
     transform-origin: center;
   }
+  .exercise-card.tone-3 .exercise-preview-target {
+    offset-path: var(--figure-eight-path);
+    offset-anchor: 140px 65px;
+    offset-rotate: 0deg;
+  }
   .exercise-card.tone-0:hover .exercise-preview-target { animation: preview-circle 4s linear infinite; }
   .exercise-card.tone-1:hover .exercise-preview-target { animation: preview-horizontal 3s ease-in-out infinite; }
   .exercise-card.tone-2:hover .exercise-preview-target { animation: preview-vertical 3s ease-in-out infinite; }
@@ -868,18 +873,8 @@ body:has(.focus-screen) > .header {
   65% { transform: translateY(79px); }
 }
 @keyframes preview-eight {
-  0%, 100% { transform: translate(0, 0); }
-  8.33% { transform: translate(41.1px, -37.8px); }
-  16.67% { transform: translate(70.9px, -40.2px); }
-  25% { transform: translate(84px, -20.5px); }
-  33.33% { transform: translate(75px, 8px); }
-  41.67% { transform: translate(40.1px, 21.2px); }
-  50% { transform: translate(1px, 0.8px); }
-  58.33% { transform: translate(-38.1px, -22.4px); }
-  66.67% { transform: translate(-73px, -17px); }
-  75% { transform: translate(-87.8px, 14.9px); }
-  83.33% { transform: translate(-74.8px, 36.5px); }
-  91.67% { transform: translate(-42.6px, 35.6px); }
+  from { offset-distance: 0%; }
+  to { offset-distance: 100%; }
 }
 @keyframes preview-focus {
   0%, 100% { transform: scale(1); }
@@ -1674,6 +1669,24 @@ body:has(> .setup-surface) {
   left: 50%;
   top: 8%;
   bottom: 8%;
+}
+.tracking-guide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: #4177ff;
+  stroke-opacity: 0.4;
+  stroke-width: 1.5;
+  stroke-dasharray: 5 7;
+  pointer-events: none;
+}
+.tracking-guide-circular {
+  inset: 50% auto auto 50%;
+  width: min(100cqw, 100cqh);
+  height: min(100cqw, 100cqh);
+  transform: translate(-50%, -50%);
 }
 .tracking-target {
   position: absolute;
