@@ -4,6 +4,10 @@
     {
       "name": "@theme",
       "description": "Defines Tailwind CSS theme variables. The inline option substitutes variable values into generated utilities."
+    },
+    {
+      "name": "@apply",
+      "description": "Inlines Tailwind CSS utility classes into a CSS rule."
     }
   ]
 }
