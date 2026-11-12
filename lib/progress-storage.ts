@@ -1,10 +1,14 @@
 import type { ExerciseSession } from "../types/exercise.ts";
 const KEY = "visualis-sessions-v1";
-export function getSessions(): ExerciseSession[] {
+export function getSessions(now = new Date()): ExerciseSession[] {
   if (typeof window === "undefined") return [];
   try {
     const data: unknown = JSON.parse(localStorage.getItem(KEY) || "[]");
-    return Array.isArray(data)
+    // Keep today and the previous six local calendar days.
+    const start = new Date(now);
+    start.setHours(0, 0, 0, 0);
+    start.setDate(start.getDate() - 6);
+    const sessions = Array.isArray(data)
       ? data.filter(
           (s): s is ExerciseSession =>
             !!s &&
@@ -15,9 +19,18 @@ export function getSessions(): ExerciseSession[] {
             Number.isFinite(s.duration) &&
             s.duration > 0 &&
             typeof s.completedAt === "string" &&
-            !Number.isNaN(Date.parse(s.completedAt)),
+            Date.parse(s.completedAt) >= start.getTime() &&
+            Date.parse(s.completedAt) <= now.getTime(),
         )
       : [];
+    if (Array.isArray(data) && sessions.length !== data.length) {
+      try {
+        localStorage.setItem(KEY, JSON.stringify(sessions));
+      } catch {
+        // Still show retained progress if storage cannot be updated.
+      }
+    }
+    return sessions;
   } catch {
     return [];
   }

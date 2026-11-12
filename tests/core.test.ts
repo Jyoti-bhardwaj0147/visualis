@@ -102,6 +102,28 @@ test("storage deduplicates, persists and clears; corrupt data does not crash", (
   assert.equal(getSessions().length, 1);
   assert.equal(clearProgress(), true);
   assert.equal(getSessions().length, 0);
+  const now = new Date(2026, 10, 12, 15, 46);
+  const retained = [
+    record("boundary", new Date(2026, 10, 6).toISOString()),
+    record("today", now.toISOString()),
+  ];
+  data.set("visualis-sessions-v1", JSON.stringify([
+    record("october", new Date(2026, 9, 29).toISOString()),
+    record("expired", new Date(2026, 10, 5, 23, 59, 59, 999).toISOString()),
+    ...retained,
+    record("future", new Date(2026, 10, 13).toISOString()),
+  ]));
+  assert.deepEqual(getSessions(now), retained);
+  assert.deepEqual(JSON.parse(data.get("visualis-sessions-v1")!), retained);
+  assert.deepEqual(getSessions(new Date(2026, 10, 13)), [retained[1]]);
+  assert.deepEqual(getSessions(new Date(2026, 10, 19)), []);
+  assert.equal(data.get("visualis-sessions-v1"), "[]");
+  // Saving a new session also prunes an existing expired cache.
+  data.set("visualis-sessions-v1", JSON.stringify([
+    record("old", new Date(2000, 0, 1).toISOString()),
+  ]));
+  assert.equal(saveSession(session), true);
+  assert.deepEqual(JSON.parse(data.get("visualis-sessions-v1")!), [session]);
   data.set("visualis-sessions-v1", "broken");
   assert.deepEqual(getSessions(), []);
   data.set("visualis-sessions-v1", JSON.stringify([session, { duration: -1 }]));
