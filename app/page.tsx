@@ -66,7 +66,10 @@ export default function Home() {
                 </span>
               </div>
             </HomeReveal>
+            
+            <HomeReveal afterLoader>
             <HeroVisual />
+            </HomeReveal>
           </section>
         </div>
 
@@ -81,7 +84,7 @@ export default function Home() {
                   Choose a pattern, find your pace, and make a moment for yourself.</p>
               </div>
             </HomeReveal>
-            <ExerciseGrid animated />
+            <ExerciseGrid  />
           </div>
         </section>
 

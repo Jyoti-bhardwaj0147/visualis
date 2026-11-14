@@ -45,7 +45,7 @@ export function ExercisePreview({ path }: { path: ExercisePath }) {
                   ? 38
                   : 65
           }
-          r="15"
+          r="12"
           fill="currentColor"
           opacity=".10"
         />
@@ -68,7 +68,7 @@ export function ExercisePreview({ path }: { path: ExercisePath }) {
                   ? 38
                   : 65
           }
-          r={path === "focus-shift" ? 12 : 7}
+          r={path === "focus-shift" ? 10 : 6}
           fill="currentColor"
         />
       </g>
