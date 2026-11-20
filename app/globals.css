@@ -375,6 +375,23 @@ body:has(.focus-screen) > .header {
   font-size: 11px;
   border-radius: 45px;
 }
+.header-github-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  color: #536177;
+  transition: color 200ms ease, background-color 200ms ease;
+  background-color: #edf4ff;
+}
+.header-github-link:hover,
+.header-github-link:focus-visible {
+  color: #235cec;
+  background-color: #42c4df1f;
+}
 .icon-button {
   border: 1px solid var(--line);
   background: white;
@@ -407,7 +424,7 @@ body:has(.focus-screen) > .header {
   background: var(--surface);
   box-shadow: 0 15px 35px #14213d1a;
 }
-.mobile-nav-panel > a:not(.mobile-nav-cta) {
+.mobile-nav-panel > a:not(.mobile-nav-cta):not(.mobile-nav-github) {
   display: flex;
   align-items: center;
   min-height: 44px;
@@ -417,7 +434,7 @@ body:has(.focus-screen) > .header {
   font-size: 0.9375rem;
   font-weight: 500;
 }
-.mobile-nav-panel > a:not(.mobile-nav-cta):hover,
+.mobile-nav-panel > a:not(.mobile-nav-cta):not(.mobile-nav-github):hover,
 .mobile-nav-panel > a[aria-current] {
   background: #edf4ff;
   color: #235cec;
@@ -429,8 +446,9 @@ body:has(.focus-screen) > .header {
   margin-top: 6px;
   font-size: 0.875rem;
 }
+.mobile-nav-github { align-self: flex-start; }
 @container header-nav (min-width: 25.001rem) {
-  .mobile-nav-cta { display: none; }
+  .mobile-nav-cta, .mobile-nav-github { display: none; }
 }
 @container header-nav (max-width: 55rem) {
   .nav-links { display: none; }
@@ -439,6 +457,7 @@ body:has(.focus-screen) > .header {
 }
 @container header-nav (max-width: 25rem) {
   .nav-cta { display: none; }
+  .nav-github { display: none; }
   .mobile-menu { margin-left: auto; }
 }
 .hero-background {
@@ -1397,6 +1416,21 @@ body:has(.focus-screen) > .header {
   padding-top: 16px;
   color: #536177;
   font-size: 13px;
+}
+.footer-credit-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  transition: color 200ms ease, text-decoration-color 200ms ease;
+}
+.footer-credit-link:hover,
+.footer-credit-link:focus-visible {
+  color: #235cec;
+  text-decoration-color: currentColor;
 }
 @media (max-width: 900px) {
   .footer-top { grid-template-columns: minmax(0, 1fr) minmax(150px, 0.7fr); }

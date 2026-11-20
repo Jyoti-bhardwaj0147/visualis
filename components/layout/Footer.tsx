@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Eye, ArrowUpRight } from "lucide-react";
+import { Eye, ArrowUpRight, Coffee } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export function Footer() {
@@ -48,7 +48,9 @@ export function Footer() {
 
       <div className="footer-bottom">
         <span suppressHydrationWarning>© {year ?? new Date().getFullYear()} Visualis. All rights reserved.</span>
+        <span>Made by <a className="footer-credit-link" href="https://jyotiibhardwaj.com/" target="_blank" rel="noopener noreferrer">Jyotii <Coffee size={15}  aria-hidden="true" /></a></span>
       </div>
+
     </footer>
   );
 }

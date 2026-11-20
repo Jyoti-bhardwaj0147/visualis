@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useIsPresent, useReducedMotion } from "motion/react";
 import { useEffect, useId, useRef, useState } from "react";
-import { Eye, Menu, X, ArrowUpRight } from "lucide-react";
+import { Eye, Menu, X, ArrowUpRight, Github } from "lucide-react";
 
 const links = [
   ["Home", "/"],
@@ -43,6 +43,9 @@ function MobilePanel({ pathname, reducedMotion, onNavigate }: {
       <Link className="button primary mobile-nav-cta" href="/exercises" onClick={() => onNavigate("/exercises")}>
         Start Now <ArrowUpRight size={16} aria-hidden="true" />
       </Link>
+      <a className="header-github-link mobile-nav-github" href="https://github.com/Jyoti-bhardwaj0147/visualis" target="_blank" rel="noopener noreferrer" aria-label="Visualis on GitHub">
+        <Github size={20} aria-hidden="true" />
+      </a>
     </motion.nav>
   );
 }
@@ -113,6 +116,10 @@ export function Header() {
         <Link className="button primary nav-cta" href="/exercises" onClick={() => closeMenu()}>
           Start Now <ArrowUpRight size={16} aria-hidden="true" />
         </Link>
+        <Link className="header-github-link nav-github" href="https://github.com/Jyoti-bhardwaj0147/visualis" target="_blank" rel="noopener noreferrer" aria-label="Visualis on GitHub">
+          <Github size={20} aria-hidden="true" />
+        </Link>
+
         <button ref={toggleRef} type="button" className="icon-button mobile-menu" onClick={() => setOpen((value) => !value)} aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls={panelId}>
           {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
         </button>
