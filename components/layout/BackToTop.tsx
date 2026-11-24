@@ -4,10 +4,14 @@ import { ArrowUp } from "lucide-react";
 import { useLenis } from "lenis/react";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { motion, useReducedMotion } from "motion/react";
+
+const MotionArrowUp = motion.create(ArrowUp);
 
 export function BackToTop() {
   const lenis = useLenis();
   const pathname = usePathname();
+  const reducedMotion = useReducedMotion();
   const [progress, setProgress] = useState(0);
   const [visible, setVisible] = useState(false);
 
@@ -41,12 +45,23 @@ export function BackToTop() {
   };
 
   return (
-    <button type="button" className={`back-to-top${visible ? " is-visible" : ""}`} onClick={scrollToTop} aria-label="Back to top" tabIndex={visible ? 0 : -1}>
+    <motion.button type="button" className={`back-to-top overflow-hidden${visible ? " is-visible" : ""}`} onClick={scrollToTop} aria-label="Back to top" tabIndex={visible ? 0 : -1} initial="idle" animate="idle" whileHover={reducedMotion ? undefined : "hover"}>
       <svg className="back-to-top-ring" viewBox="0 0 48 48" aria-hidden="true">
         <circle className="back-to-top-track" cx="24" cy="24" r="21" />
         <circle className="back-to-top-progress" cx="24" cy="24" r="21" pathLength="100" strokeDasharray="100" strokeDashoffset={100 - progress} />
       </svg>
-      <ArrowUp size={19} aria-hidden="true" />
-    </button>
+      <MotionArrowUp
+        size={19}
+        aria-hidden="true"
+        variants={{
+          idle: { y: 0, opacity: 1, transition: { duration: 0.2 } },
+          hover: {
+            y: [0, -28, 28, 0],
+            opacity: [1, 0, 0, 1],
+            transition: { duration: 0.55, times: [0, 0.45, 0.46, 1], ease: "easeInOut" },
+          },
+        }}
+      />
+    </motion.button>
   );
 }
