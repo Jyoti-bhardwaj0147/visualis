@@ -1,0 +1,44 @@
+name: Scheduled project checks
+
+on:
+  schedule:
+    - cron: '52 8 * * 1-6' # 14:22 IST, Monday through Saturday
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scheduled-project-checks
+  cancel-in-progress: false
+
+jobs:
+  check:
+    if: github.repository == 'Jyoti-bhardwaj0147/visualis' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+      - name: Record successful checks
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          git config user.name 'Jyoti-bhardwaj0147'
+          git config user.email 'jyoti.kumari174315@gmail.com'
+          mkdir -p .github/reports
+          printf '# Latest project checks\n\n- Checked commit: %s\n- Completed (UTC): %s\n- TypeScript, tests, production build: passed\n- Lint: not configured\n- Run: %s/%s/actions/runs/%s\n' \
+            "$GITHUB_SHA" "$(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
+            "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID" \
+            > .github/reports/project-checks.md
+          git add -- .github/reports/project-checks.md
+          git diff --cached --quiet && exit 0
+          git commit -m 'chore: record successful project checks'
+          git push origin "HEAD:$DEFAULT_BRANCH"
